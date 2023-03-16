@@ -1,6 +1,7 @@
 package guet.edu.cn.LoginUp;
 
 import cn.edu.guet.ulit.PasswordEncoder;
+import guet.edu.cn.LoginIn.LoginIn;
 import guet.edu.cn.Menu.Menu;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class LoginUp extends JFrame {
     private JTextField account;
     private JTextField password;
     private JButton login;
+    private JButton loginup;
 
     public LoginUp(String title){
 
@@ -35,6 +37,10 @@ public class LoginUp extends JFrame {
         login = new JButton("登录");
         login.setBounds(105,200,190,35);
         jPanel.add(login);
+
+        loginup = new JButton("注册");
+        loginup.setBounds(300,200,80,35);
+        jPanel.add(loginup);
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -101,6 +107,41 @@ public class LoginUp extends JFrame {
 
             }
         });
+
+        loginup.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username=account.getText();
+                String pass=password.getText();
+
+                String sql="SELECT *"+
+                        "FROM users"+
+                        " WHERE username=? ";//SQL语句
+
+                PreparedStatement pstmt;
+                Connection conn = null;
+                ResultSet resultSet;
+                String url="jdbc:oracle:thin:@106.55.182.14:1521:orcl";
+
+                try {
+                    Class.forName("oracle.jdbc.driver.OracleDriver");
+                    conn= DriverManager.getConnection(url,"hls","Grcl1234HlS");
+
+                    if (conn!=null){
+                        System.out.println("链接成功");
+                        new LoginIn("注册窗口");
+                    }
+
+
+                } catch (ClassNotFoundException | SQLException ex) {
+                    ex.printStackTrace();
+                }
+
+
+            }
+        });
+
+
 
 
 
