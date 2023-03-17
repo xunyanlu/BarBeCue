@@ -1,5 +1,6 @@
 package guet.edu.cn.main;
 
+import guet.edu.cn.LoginIn.LoginIn;
 import guet.edu.cn.LoginUp.LoginUp;
 
 public class main {
