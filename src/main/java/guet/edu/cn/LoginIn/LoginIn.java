@@ -1,9 +1,13 @@
 package guet.edu.cn.LoginIn;
 
+import guet.edu.cn.bean.Product;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoginIn extends JFrame{
 
@@ -14,6 +18,8 @@ public class LoginIn extends JFrame{
     private JTextField password;
 
     private JButton loginup;
+
+    private String columnNames[] = {"USERNAME"};
 
 
 
@@ -27,7 +33,7 @@ public class LoginIn extends JFrame{
         jPanel.setLayout(null);//布局为空
 
 
-        account=new JTextField("zhangsan");
+        account=new JTextField("zhangsang");
         account.setBounds(105,130,190,35);
         jPanel.add(account);
 
@@ -49,8 +55,8 @@ public class LoginIn extends JFrame{
                 String username=account.getText();
                 String pass=password.getText();
 
-                String sql="SELECT *"+
-                        "FROM users";//SQL语句
+                String sql="SELECT username"+
+                        " FROM users";//SQL语句
 
                 PreparedStatement pstmt;
                 Connection conn = null;
@@ -66,16 +72,35 @@ public class LoginIn extends JFrame{
                         pstmt=conn.prepareStatement(sql);//把PSTMT和SQL语句关联
                         //pstmt.setString(1,username);
 
+
                         resultSet = pstmt.executeQuery();//执行查询，得到一个结果集
-                        resultSet.next();
 
-                        String USERMANE=resultSet.getString("USERNAME");
+                        //resultSet.next();
 
-                        if (USERMANE.equals(username)){
+                        //String P=resultSet.getString("USERNAME");
+                        //System.out.println(P);
+
+
+
+                        while (resultSet.next()){
+
+                            if (username.equals(resultSet.getString("USERNAME"))){
+
+                                System.out.println("您已注册，请前往登录");
+                                break;
+
+                            }else {
+                                System.out.println("请注册");
+
+                            }
+
+                        }
+
+                        /*if (USERMANE==null){
                             System.out.println("您已注册，请前往登录");
                         }else {
                             System.out.println("请注册");
-                        }
+                        }*/
 
                     }
 
