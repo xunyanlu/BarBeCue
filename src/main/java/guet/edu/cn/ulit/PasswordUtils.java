@@ -1,4 +1,4 @@
-package cn.edu.guet.ulit;
+package guet.edu.cn.ulit;
 
 import java.util.UUID;
 

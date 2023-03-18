@@ -1,8 +1,8 @@
 package guet.edu.cn.LoginUp;
 
-import cn.edu.guet.ulit.PasswordEncoder;
 import guet.edu.cn.LoginIn.LoginIn;
 import guet.edu.cn.Menu.Menu;
+import guet.edu.cn.ulit.PasswordEncoder;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
