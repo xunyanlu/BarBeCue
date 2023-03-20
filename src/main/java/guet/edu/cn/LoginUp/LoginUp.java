@@ -82,7 +82,7 @@ public class LoginUp extends JFrame {
 
                         PasswordEncoder encoder = new PasswordEncoder("www.guet.edu.cn");
 
-                        if(encoder.matches(PASS,passes)){
+                        if(encoder.matches(PASS,pass)){
                             System.out.println("登录成功");
                             setVisible(false);
                             Menu main = new Menu();
