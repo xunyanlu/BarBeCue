@@ -147,7 +147,6 @@ public class LoginIn extends JFrame{
         });
 
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setVisible(true);//窗口可见
 
