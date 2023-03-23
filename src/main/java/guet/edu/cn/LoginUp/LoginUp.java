@@ -25,11 +25,11 @@ public class LoginUp extends JFrame {
         jPanel=(JPanel) this.getContentPane();
         jPanel.setLayout(null);//布局为空
 
-        account=new JTextField("");
+        account=new JTextField("zhangsan");
         account.setBounds(105,130,190,35);
         jPanel.add(account);
 
-        password=new JTextField("");
+        password=new JTextField("123456");
         String passes=password.getText();
         password.setBounds(105,160,190,35);
         jPanel.add(password);

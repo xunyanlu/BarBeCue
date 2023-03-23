@@ -1,5 +1,7 @@
 package guet.edu.cn.Menu;
 
+import guet.edu.cn.Increase.Increase;
+import guet.edu.cn.LoginIn.LoginIn;
 import guet.edu.cn.bean.Product;
 
 import javax.swing.*;
@@ -12,11 +14,15 @@ public class Menu {
 
         private JFrame jFrame;
         private JPanel jPanel;
+        private JButton increase;
 
 
         JMenu jMenu = new JMenu("基础信息管理");
+        JMenu jMenu1 = new JMenu("增减");
         JMenuBar jMenuBar = new JMenuBar();
+        JMenuBar jMenuBar1 = new JMenuBar();
         JMenuItem item01 = new  JMenuItem("查看商品");
+        JMenuItem item02 = new JMenuItem("增加");
 
 
 
@@ -24,6 +30,8 @@ public class Menu {
         JScrollPane jscrollpane = new JScrollPane();
         private String columnNames[] = {"id", "商品名称", "单价", "类型"};
         private Object[][] rowData = null;
+
+
 
         public JFrame getjFrame() {
             return jFrame;
@@ -36,6 +44,7 @@ public class Menu {
             jPanel= (JPanel) jFrame.getContentPane();
             jFrame.setSize(700,400);
             jPanel.setLayout(null);
+
 
             item01.addActionListener(e -> {
                 Connection conn = null;
@@ -102,12 +111,27 @@ public class Menu {
                 jPanel.add(jscrollpane);
 
             });
+        item02.addActionListener(e -> {
+            new Increase("增加");
+
+            DefaultTableCellRenderer r = new DefaultTableCellRenderer();
+            r.setHorizontalAlignment(JLabel.CENTER);
+            jPanel.add(jscrollpane);
+
+            });
 
 
             jMenu.add(item01);
+            jMenu1.add(item02);
             jMenuBar.add(jMenu);
+            jMenuBar1.add(jMenu1);
             jMenuBar.setBounds(0,0,100,30);
+            jMenuBar1.setBounds(100,0,50,30);
             jPanel.add(jMenuBar);
+            jPanel.add(jMenuBar1);
+
+
+
 
 
             //Frame.setVisible(true);
