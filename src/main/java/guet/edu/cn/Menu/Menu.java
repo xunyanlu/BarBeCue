@@ -137,6 +137,7 @@ public class Menu {
 
             item01.addActionListener(e -> {
                 Connection conn = null;
+
                 String url="jdbc:oracle:thin:@106.55.182.14:1521:orcl";
                 String sql = "SELECT * FROM product";
                 PreparedStatement pstmt;
