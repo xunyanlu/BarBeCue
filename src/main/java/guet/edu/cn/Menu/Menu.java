@@ -3,6 +3,7 @@ package guet.edu.cn.Menu;
 import guet.edu.cn.Increase.Increase;
 import guet.edu.cn.LoginIn.LoginIn;
 import guet.edu.cn.bean.Product;
+import guet.edu.cn.pay.WXPay;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -39,9 +40,24 @@ public class Menu {
         private String columnNames[] = {"id", "商品名称", "单价", "类型"};
         private Object[][] rowData = null;
         private Object[][] rowData1 = {
-                {"","","",""},{"","","",""},{"","","",""},{"","","",""},{"","","",""},{"","","",""},
-                {"","","",""},{"","","",""},{"","","",""},{"","","",""},{"","","",""},{"","","",""},
-                {"","","",""},{"","","",""},{"","","",""},{"","","",""},{"","","",""},{"","","",""}
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""},
+                {"","","",""}
         };
 
 
@@ -63,6 +79,60 @@ public class Menu {
             jPanel= (JPanel) jFrame.getContentPane();
             jFrame.setSize(1400,1100);
             jPanel.setLayout(null);
+
+
+            pay.addActionListener(e -> {
+
+                int price = 58;
+                String name="羊肉串";
+                /*
+                for (int i = 0; i < rowData1.length; i++) {
+                    String str[] = (String[]) rowData1[i];
+                    name+=str[1];
+                    price += (int) Float.parseFloat(str[2]);
+                }
+                System.out.println(name);
+
+                 */
+
+
+                WXPay.unifiedOrder("羊肉串",58*100);
+
+                JFrame jFrame=new JFrame("结账页面");
+                jFrame.setSize(300,330);
+
+                JLabel pay=new JLabel();
+                ImageIcon icon=new ImageIcon("pay.jpg");    icon.setImage(icon.getImage().getScaledInstance(300,300, Image.SCALE_DEFAULT));
+
+                pay.setVerticalTextPosition(JLabel.TOP);
+                pay.setBounds(0,0,300,300);
+
+                String strMsg1 = name;
+                String strMsg = "<html><body bgcolor='green' color='red'>" +strMsg1+ "<br>" +price+ "<body></html>";
+                pay.setText(strMsg);
+                pay.setIcon(icon);
+
+                JPanel jPanel= (JPanel) jFrame.getContentPane();
+                jPanel.setLayout(null);
+                jPanel.add(pay);
+                jFrame.setVisible(true);
+
+
+
+            });
+            delete.addActionListener(e -> {
+                /*int count = table.getSelectedRow();
+
+                String body=table.getValueAt(count,1).toString();
+                String price=table.getValueAt(count,2).toString();
+
+                System.out.println(body);
+                System.out.println(price);
+
+                 */
+
+
+            });
 
 
             item01.addActionListener(e -> {
@@ -187,12 +257,20 @@ public class Menu {
             product01.setText(strMsg);
             jPanel.add(product01);
             jPanel.repaint();
+
             product01.addMouseListener(new MouseListener() {
+
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     /*把选择的商品添加到左侧*/
-                    rowData1[0]= new String[]{"1", strMsg1, strMsg2, "肉类"};
-                    jscrollpane.repaint();
+
+                        int i = 0;
+                        int j = 1;
+                        rowData1[i] = new String[]{String.valueOf(j), strMsg1, strMsg2, "肉类"};
+                        i++;
+                        j++;
+                        jscrollpane.repaint();
+
 
                 }
 
